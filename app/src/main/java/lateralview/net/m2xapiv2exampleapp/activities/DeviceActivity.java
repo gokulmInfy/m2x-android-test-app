@@ -62,8 +62,8 @@ public class DeviceActivity extends Activity implements ResponseListener {
         Device.searchDevices(DeviceActivity.this, params, this);
     }
 
-    public void listGroups(View view) {
-        Device.listDeviceGroups(DeviceActivity.this, this);
+    public void listTags(View view) {
+        Device.listDeviceTags(DeviceActivity.this, this);
     }
 
     public void createDevice(View view) {

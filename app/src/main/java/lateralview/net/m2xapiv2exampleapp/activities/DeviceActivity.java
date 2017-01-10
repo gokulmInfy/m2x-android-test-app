@@ -1,7 +1,6 @@
 package lateralview.net.m2xapiv2exampleapp.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -56,10 +55,14 @@ public class DeviceActivity extends Activity implements ResponseListener {
         Device.searchPublicCatalog(DeviceActivity.this, params, this);
     }
 
-    public void listSearchDevices(View view) {
+    public void searchDevices(View view) {
+
+        Device.searchDevices(DeviceActivity.this, null, this);
+    }
+    public void listDevices(View view) {
         HashMap<String,String> params = new HashMap<String, String>();
-        params.put("p","1");
-        Device.searchDevices(DeviceActivity.this, params, this);
+        params.put("limit","3");
+        Device.listDevices(DeviceActivity.this, params, this);
     }
 
     public void listTags(View view) {
@@ -192,73 +195,6 @@ public class DeviceActivity extends Activity implements ResponseListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    public void listTriggers(View view){
-        Device.listTriggers(DeviceActivity.this,"437cb907799ae7e01309133006806ba3",this);
-    }
-
-    public void createTrigger(View view){
-        try {
-            JSONObject o = new JSONObject("{ \"stream\": \"LVStream\",\n" +
-                    "  \"name\": \"High temperature\",\n" +
-                    "  \"condition\": \">\",\n" +
-                    "  \"value\": 30,\n" +
-                    "  \"callback_url\": \"http://example.com\",\n" +
-                    "  \"status\": \"enabled\",\n" +
-                    "  \"send_location\": true }");
-            Device.createTrigger(DeviceActivity.this,o,"437cb907799ae7e01309133006806ba3",this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void viewTrigger(View view){
-        Device.viewTrigger(DeviceActivity.this,"437cb907799ae7e01309133006806ba3","AUo1jryrrmG-mLbSanOV",this);
-    }
-
-    public void updateTrigger(View view){
-        try {
-            JSONObject o = new JSONObject("{ \"stream\": \"temperature\",\n" +
-                    "  \"name\": \"High temperature\",\n" +
-                    "  \"condition\": \">\",\n" +
-                    "  \"value\": 30,\n" +
-                    "  \"callback_url\": \"http://example.com\",\n" +
-                    "  \"status\": \"enabled\",\n" +
-                    "  \"send_location\": false }");
-            Device.updateTrigger(DeviceActivity.this,o,"437cb907799ae7e01309133006806ba3","AUo1jryrrmG-mLbSanOV",this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void testTrigger(View view){
-        try {
-            JSONObject o = new JSONObject("{\n" +
-                    "  \"device_id\": \"437cb907799ae7e01309133006806ba3\",\n" +
-                    "  \"stream\": \"temperature\",\n" +
-                    "  \"trigger_name\": \"High Temperature\",\n" +
-                    "  \"trigger_description\": \"temperature > 30\",\n" +
-                    "  \"condition\": \">\",\n" +
-                    "  \"threshold\": 30.0,\n" +
-                    "  \"value\": 31.5,\n" +
-                    "  \"timestamp\": \"2014-06-27T22:22:58.104Z\",\n" +
-                    "  \"location\": {\n" +
-                    "               \"name\": \"Machines room\",\n" +
-                    "               \"latitude\": 40.77177,\n" +
-                    "               \"longitude\": -73.97352,\n" +
-                    "               \"elevation\": 0,\n" +
-                    "               \"timestamp\": \"2014-06-27T22:22:57.040Z\"\n" +
-                    "              }\n" +
-                    "}\n");
-            Device.testTrigger(DeviceActivity.this,o,"437cb907799ae7e01309133006806ba3","AUo1jryrrmG-mLbSanOV",this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteTrigger(View view){
-        Device.deleteTrigger(DeviceActivity.this,"437cb907799ae7e01309133006806ba3","AUo1jryrrmG-mLbSanOV",this);
     }
 
     public void viewRequestLog(View view){

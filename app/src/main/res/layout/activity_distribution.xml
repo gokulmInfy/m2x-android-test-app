@@ -77,42 +77,5 @@
             android:text="Delete data Stream"
             android:onClick="deleteDataStream"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="List Triggers"
-            android:onClick="listTriggers"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create Trigger"
-            android:onClick="createTrigger"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Trigger"
-            android:onClick="viewTrigger"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update Trigger"
-            android:onClick="updateTrigger"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test Trigger"
-            android:onClick="testTrigger"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete Trigger"
-            android:onClick="deleteTrigger"/>
-
-
     </LinearLayout>
 </ScrollView>

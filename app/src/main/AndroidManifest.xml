@@ -31,10 +31,6 @@
             android:name=".activities.KeysActivity"
             android:label="@string/title_activity_keys" >
         </activity>
-        <activity
-            android:name=".activities.ChartsActivity"
-            android:label="@string/title_activity_charts" >
-        </activity>
     </application>
 
 </manifest>

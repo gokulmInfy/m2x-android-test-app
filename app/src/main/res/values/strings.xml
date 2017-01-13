@@ -7,6 +7,4 @@
     <string name="title_activity_device">DeviceActivity</string>
     <string name="title_activity_distribution">Distribution</string>
     <string name="title_activity_keys">KeysActivity</string>
-    <string name="title_activity_charts">ChartsActivity</string>
-
 </resources>

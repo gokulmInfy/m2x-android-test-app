@@ -3,20 +3,10 @@ package lateralview.net.m2xapiv2exampleapp.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
-import lateralview.net.attm2xapiv2.listeners.ResponseListener;
-import lateralview.net.attm2xapiv2.main.M2XAPI;
-import lateralview.net.attm2xapiv2.model.Device;
-import lateralview.net.attm2xapiv2.network.ApiV2Response;
 import lateralview.net.m2xapiv2exampleapp.R;
 
 
@@ -68,11 +58,6 @@ public class MainActivity extends Activity {
     public void openKeysActivity(View view) {
         Intent openKeysActivityIntent = new Intent(MainActivity.this,KeysActivity.class);
         startActivity(openKeysActivityIntent);
-    }
-
-    public void openChartActivity(View view) {
-        Intent openChartsActivityIntent = new Intent(MainActivity.this,ChartsActivity.class);
-        startActivity(openChartsActivityIntent);
     }
 
     @Override

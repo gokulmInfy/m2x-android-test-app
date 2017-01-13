@@ -19,19 +19,18 @@ public class Distribution {
     public static final int REQUEST_CODE_LIST_DISTRIBUTIONS = 2001;
     public static final int REQUEST_CODE_CREATE_DISTRIBUTION = 2002;
     public static final int REQUEST_CODE_VIEW_DISTRIBUTION_DETAILS = 2003;
-    public static final int REQUEST_CODE_UPDATE_DISTRIBUTION_DETAILS = 2003;
-    public static final int REQUEST_CODE_LIST_DEVICES = 2004;
-    public static final int REQUEST_CODE_ADD_DEVICE = 2005;
-    public static final int REQUEST_CODE_DELETE_DISTRIBUTION = 2006;
-    public static final int REQUEST_CODE_LIST_DATA_STREAMS = 2007;
-    public static final int REQUEST_CODE_CREATE_UPDATE_DATA_STREAMS = 2008;
-    public static final int REQUEST_CODE_VIEW_DATA_STREAM = 2009;
-    public static final int REQUEST_CODE_DELETE_DATA_STREAM = 2010;
-    public static final int REQUEST_CODE_CREATE_TRIGGER = 2011;
-    public static final int REQUEST_CODE_VIEW_TRIGGER = 2012;
-    public static final int REQUEST_CODE_UPDATE_TRIGGER = 2013;
-    public static final int REQUEST_CODE_TEST_TRIGGER = 2014;
-    public static final int REQUEST_CODE_DELETE_TRIGGER = 2015;
+    public static final int REQUEST_CODE_UPDATE_DISTRIBUTION_DETAILS = 2004;
+    public static final int REQUEST_CODE_LIST_DEVICES = 2005;
+    public static final int REQUEST_CODE_ADD_DEVICE = 2006;
+    public static final int REQUEST_CODE_DELETE_DISTRIBUTION = 2007;
+    public static final int REQUEST_CODE_LIST_DATA_STREAMS = 2008;
+    public static final int REQUEST_CODE_CREATE_UPDATE_DATA_STREAMS = 2009;
+    public static final int REQUEST_CODE_VIEW_DATA_STREAM = 2010;
+    public static final int REQUEST_CODE_DELETE_DATA_STREAM = 2011;
+    public static final int REQUEST_CODE_METADATA = 2012;
+    public static final int REQUEST_CODE_UPDATE_METADATA = 2013;
+    public static final int REQUEST_CODE_METADATA_FIELD = 2014;
+    public static final int REQUEST_CODE_UPDATE_METADATA_FIELD = 2015;
 
     public static final void list(Context context, ResponseListener listener){
         JsonRequest.makeGetRequest(
@@ -71,6 +70,36 @@ public class Distribution {
                 listener,
                 REQUEST_CODE_UPDATE_DISTRIBUTION_DETAILS
         );
+    }
+    public static final void metadata(Context context, String distributionId, ResponseListener listener){
+        Metadata.metadata(
+                context,
+                String.format(Locale.US, Constants.DISTRIBUTION_METADATA, distributionId),
+                listener,
+                REQUEST_CODE_METADATA);
+    }
+    public static final void updateMetadata(Context context, String distributionId, JSONObject body, ResponseListener listener){
+        Metadata.updateMetadata(
+                context,
+                String.format(Locale.US, Constants.DISTRIBUTION_METADATA, distributionId),
+                body,
+                listener,
+                REQUEST_CODE_UPDATE_METADATA);
+    }
+    public static final void metadataField(Context context, String distributionId, String field, ResponseListener listener){
+        Metadata.metadataField(
+                context,
+                String.format(Locale.US, Constants.DISTRIBUTION_METADATA_FIELD, distributionId, field),
+                listener,
+                REQUEST_CODE_METADATA_FIELD);
+    }
+    public static final void updateMetadataField(Context context, String distributionId, String field, JSONObject body, ResponseListener listener){
+        Metadata.updateMetadataField(
+                context,
+                String.format(Locale.US, Constants.DISTRIBUTION_METADATA_FIELD, distributionId, field),
+                body,
+                listener,
+                REQUEST_CODE_UPDATE_METADATA_FIELD);
     }
 
     public static final void listDevices(Context context,String distributionId, ResponseListener listener){
@@ -143,64 +172,10 @@ public class Distribution {
         );
     }
 
-    public static final void listTriggers(Context context,String distributionId, ResponseListener listener){
-        JsonRequest.makeGetRequest(
-                context,
-                String.format(Locale.US,Constants.DISTRIBUTION_LIST_TRIGGERS,distributionId),
-                null,
-                listener,
-                REQUEST_CODE_VIEW_DATA_STREAM
-        );
-    }
 
-    public static final void createTrigger(Context context,JSONObject params,String distributionId, ResponseListener listener){
-        JsonRequest.makePostRequest(
-                context,
-                String.format(Locale.US,Constants.DISTRIBUTION_CREATE_TRIGGERS,distributionId),
-                params,
-                listener,
-                REQUEST_CODE_CREATE_TRIGGER
-        );
-    }
 
-    public static final void viewTrigger(Context context,String distributionId,String triggerId, ResponseListener listener){
-        JsonRequest.makeGetRequest(
-                context,
-                String.format(Locale.US,Constants.DISTRIBUTION_VIEW_TRIGGER,distributionId,triggerId),
-                null,
-                listener,
-                REQUEST_CODE_VIEW_TRIGGER
-        );
-    }
 
-    public static final void updateTrigger(Context context,JSONObject params,String distributionId, String triggerId, ResponseListener listener){
-        JsonRequest.makePutRequest(
-                context,
-                String.format(Locale.US,Constants.DISTRIBUTION_UPDATE_TRIGGER,distributionId,triggerId),
-                params,
-                listener,
-                REQUEST_CODE_UPDATE_TRIGGER
-        );
-    }
 
-    public static final void testTrigger(Context context,JSONObject params,String distributionId,String triggerId, ResponseListener listener){
-        JsonRequest.makePostRequest(
-                context,
-                String.format(Locale.US,Constants.DISTRIBUTION_TEST_TRIGGER,distributionId,triggerId),
-                params,
-                listener,
-                REQUEST_CODE_TEST_TRIGGER
-        );
-    }
 
-    public static final void deleteTrigger(Context context,String distributionId,String triggerId, ResponseListener listener){
-        JsonRequest.makeDeleteRequest(
-                context,
-                String.format(Locale.US,Constants.DISTRIBUTION_DELETE_TRIGGER,distributionId,triggerId),
-                null,
-                listener,
-                REQUEST_CODE_DELETE_TRIGGER
-        );
-    }
 
 }

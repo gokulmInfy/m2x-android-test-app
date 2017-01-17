@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import lateralview.net.attm2xapiv2.listeners.ResponseListener;
 import lateralview.net.attm2xapiv2.model.Device;
+import lateralview.net.attm2xapiv2.model.Job;
 import lateralview.net.attm2xapiv2.network.ApiV2Response;
 import lateralview.net.m2xapiv2exampleapp.R;
 
@@ -117,6 +118,10 @@ public class DeviceActivity extends Activity implements ResponseListener {
         Device.listDataStreams(DeviceActivity.this, "437cb907799ae7e01309133006806ba3", this);
     }
 
+    public void exportValues(View view) {
+
+        Device.exportValues(DeviceActivity.this, "437cb907799ae7e01309133006806ba3", null,this);
+    }
     public void createUpdateDataStream(View view){
         try {
             JSONObject o = new JSONObject("{ \"unit\": { \"label\": \"celsius\", symbol: \"C\" }}");
@@ -210,6 +215,19 @@ public class DeviceActivity extends Activity implements ResponseListener {
     public void onRequestCompleted(ApiV2Response result, int requestCode) {
         Log.d("APIV2Request", "Completed");
         Log.d("APIV2 - RESULT",result.get_raw());
+
+        if(requestCode == Device.REQUEST_CODE_DEVICE_EXPORT_VALUES && result.get_headers().contains("Location")){
+            String location = result.get_headers();
+            location = location.substring(location.indexOf("Location="));
+            location = location.substring(location.lastIndexOf("s/")+2,location.indexOf(","));
+            Log.d("APIV2 - Location Header",location);
+            try {
+                Thread.sleep(5000);// wait till export is success, then check job status
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Job.viewDetails(DeviceActivity.this,location,this);
+        }
     }
 
     @Override

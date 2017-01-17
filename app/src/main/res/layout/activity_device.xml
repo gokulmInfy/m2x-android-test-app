@@ -110,6 +110,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Export Values"
+            android:onClick="exportValues"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Delete Data Stream Values"
             android:onClick="deleteDataStreamValues"/>
 
